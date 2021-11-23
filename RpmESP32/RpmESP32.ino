@@ -46,8 +46,8 @@ void IRAM_ATTR A_Counter() {
       latest = ((rounds/1000.0))*1500.0;
       rounds = 0;
       previousMillis = micros();
-      //Serial.println(String(latest) + "," + String(previousMillis)); //Til Scriptet
-      Serial.println(String(latest)); //Til plotteren
+      Serial.println(String(latest) + "," + String(previousMillis)); //Til Scriptet
+      //Serial.println(String(latest)); //Til plotteren
     }
     rounds += 1;
 }
