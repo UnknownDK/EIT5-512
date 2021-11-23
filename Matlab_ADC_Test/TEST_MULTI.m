@@ -24,7 +24,7 @@ antalSNR = round((snr_range(3) - snr_range(1)) / snr_range(2));
 
 
 filterDC = 10;
-samples = 42e6;
+samples = 42e3;
 Tmax = samples/fs;
 t = 0:1/fs:Tmax-1/fs;
 
@@ -40,17 +40,19 @@ droneResult = zeros(antalB,antalSNR);
 
 %for i_b = b_range(1):b_range(2):b_range(3)
 %for i_e = snr_range(1):snr_range(2):snr_range(3)
-e_range = [0.65:0.05:1];
+e_range = [0.9:0.05:0.9];
     
-Bits = 12;          % Bit number.    
+Bits = 8;          % Bit number.    
 
     
-parfor run_E = 1:1:length(e_range)
+for run_E = 1:1:length(e_range)
     eInput = e_range(1) - 0.05 + (run_E * 0.05);       % % af input range vi bruger
     %Signaler
-    aSampled = eInput*cos((2*pi*f1*t)+theta_a);
-    bSampled = eInput*cos((2*pi*f2*t)+theta_b);
-      
+    a = (cos((2*pi*f1*t)+theta_a)+cos((2*pi*301e6*t)+theta_a));
+    b = cos((2*pi*f2*t)+theta_b);
+
+    aSampled = eInput*rescale(a,-1,1);
+    bSampled = eInput*rescale(b,-1,1); 
     
     % ADC: Quantizer
     % Quantizing (abs of input value not over 1)
@@ -67,7 +69,7 @@ parfor run_E = 1:1:length(e_range)
     B = fftshift(B);
     
     %sorterer DC tillaegget fra ADC'erne fra:
-    for i = (N/2)-(N/filterDC):1:(N/2)+(N/filterDC)
+    for i = 1:1:(N/2)+(N/filterDC)   %(N/2)-(N/filterDC)
         A(i) = 0;
         B(i) = 0;
     end
@@ -78,11 +80,17 @@ parfor run_E = 1:1:length(e_range)
     
     [maxAmpValB, indexB] = max(abs(B));
     %[maxAmpValA, indexA]= max(abs(A));
-    faseB = angle(B(indexB)) * 180 / pi;
-    faseA = angle(A(indexB)) * 180 / pi;            
+    faseB(1) = angle(B(indexB)) * 180 / pi;
+    faseA(1) = angle(A(indexB)) * 180 / pi;
+    B(indexB) = 0;
+    [maxAmpValB, indexA] = max(abs(B));
+    faseB(2) = angle(B(indexA)) * 180 / pi;
+    faseA(2) = angle(A(indexA)) * 180 / pi;
     
-    
-    faseDif(run_E) = mod(abs(faseB - faseA),180);
+    fase(1) = mod(abs(faseB(1) - faseA(1)),180);
+    fase(2) = mod(abs(faseB(2) - faseA(2)),180);
+
+    faseDif(run_E) = mean(fase,"all");
     v(run_E) = (Clambda * faseDif(run_E))/(360 * 0.75 *Clambda);
     droneVinkel(run_E) = (asin(v(run_E))) * 180 / pi
     difference(run_E) = droneVinkelOensket - droneVinkel(run_E);

@@ -26,8 +26,8 @@ droneVinkelOensket = (asin(vOensket)) * 180 / pi;
 
 
 antalTests = 1; %antal tests til stoej
-snr_range = [20 10 50]; %hvad tester vi af SNR f
-b_range = [10 2 14];      %hvad bits tester vi med
+snr_range = [40 10 40]; %hvad tester vi af SNR f
+b_range = [12 2 12];      %hvad bits tester vi med
 
 
 antalB = round((b_range(3) - b_range(1)) / b_range(2));
