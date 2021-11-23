@@ -2,7 +2,7 @@
 clearvars
 tic
 
-antalTests = 300;
+antalTests = 3000;
 
 fs = 42e6;
 Tmax = 0.0005;
@@ -20,14 +20,14 @@ Clambda = 0.1228658;
 vOensket = (Clambda * 90)/(360 * 0.75 *Clambda);
 droneVinkelOensket = (asin(vOensket)) * 180 / pi;
 
-for fftB = 8:1:10
+for fftB = 9:1:10
 
     N = 2^fftB;           % oploesning af FFT
     f = (-N/2:N/2-1)/N*fs;
 
 
-    e_range = [20 10 90]; %hvad tester vi af SNR f
-    b_range = [10 1 16];      %hvad bits tester vi med
+    e_range = [46 1 49]; %hvad tester vi af SNR f
+    b_range = [12 2 12];      %hvad bits tester vi med
     antalB = round((b_range(3) - b_range(1)) / b_range(2));
     antalE = round((e_range(3) - e_range(1)) / e_range(2));
 
@@ -122,7 +122,7 @@ for fftB = 8:1:10
         taeller_b = taeller_b + 1;
     end
 
-    filename = "C:\Users\Nikolaj\Desktop\resultater\" + N + "N.mat";
+    filename = "C:\Users\nikol\Desktop\resultater\" + N + "N.mat";
     mySave(filename,difResult,faseResult,droneResult);
 
 end
