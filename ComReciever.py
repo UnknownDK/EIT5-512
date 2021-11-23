@@ -1,27 +1,27 @@
 import serial
-import time
 from datetime import datetime
 import csv
 
 ser = serial.Serial('COM6', 115200, timeout=1)
-times = [] #Har byttet rundt på navnene på dem her lol
+#times = [] #Har byttet rundt på navnene på dem her lol
 data = []
-
+num = []
+times = []
+memes = []
 input("Press Enter to continue...")
-startTime = time.time_ns()
 while True:
   try:
-    memes = ser.readline().strip().decode('utf-8')
-    currTime = time.time_ns() - startTime
-    times.append(memes)
-    data.append(currTime)
-    print(str(currTime) + " " + str(memes))
+    memes.append(ser.readline())
   except KeyboardInterrupt:
     break
 
-
+for i in memes:
+  #print(i)
+  temp = i.strip().decode('utf-8').split(",")
+  num.append(temp[0])
+  times.append(temp[1])
 filename = str(datetime.now().strftime("%d%m%Y-%H%M%S")) + ".csv"
 
 with open(filename, 'w', newline='') as f:
     writer = csv.writer(f)
-    writer.writerows(zip(data, times))
+    writer.writerows(zip(times,num))
