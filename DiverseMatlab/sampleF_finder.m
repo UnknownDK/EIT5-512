@@ -8,7 +8,7 @@ channel4 = freqFinder(60)
 
 
 function result = freqFinder(i)
-    fl = 480 + i
+    fl = 280 + i
     fh = fl + 20;
 
     x = floor(fh / (fh-fl));
