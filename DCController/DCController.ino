@@ -2,12 +2,15 @@
 #define Encoder_output_B 19 // pin 4 of the Arduino
 //#define Encoder_output_I 18 // pin 3 of the Arduino
 
-// Pin til PWM
-const int pinPWM = 16;  // 16 corresponds to GPIO16 men hvad vil vi vælge ???
+// Pins til PWM
+const int pinPWMR = 16;  // 16 corresponds to GPIO16 men hvad vil vi vælge ???
+const int pinPWML = 17;  // blå ledning
+
 
 // setting PWM properties
 const int freq = 10000; // PWM frekvens
-const int pwmChannel = 0; // Ved jeg ikke helt hvad gør
+const int pwmChannelR = 0; // Ved jeg ikke helt hvad gør
+const int pwmChannelL = 1; // Ved jeg ikke helt hvad gør
 const int resolution = 12; // bit resolution tror jeg (så 0 - 4095)
  
 double gearRatio = 6.1838;
@@ -17,6 +20,7 @@ double angPrStep = 360.0/(2000.0*gearRatio);
 double Kd = 0;  // Differential gain
 double Kp = 0;  // Proportional gain
 double Ki = 0;  // Integrator gain
+double P,I,D = 0;
 double samplingPeriod = 1;   // 1/frekvens (enhed er millis)
 
 double angle = 0;         // y(t) (DER VI ER - LÆSES MED ENCODER) 
@@ -55,10 +59,13 @@ void isrB(){
 
 void setup(){
   // configure LED PWM functionalitites
-  ledcSetup(pwmChannel, freq, resolution);
+  ledcSetup(pwmChannelR, freq, resolution);
+  ledcSetup(pwmChannelL, freq, resolution);
+
   
   // attach the channel to the GPIO to be controlled
-  ledcAttachPin(pinPWM, pwmChannel);
+  ledcAttachPin(pinPWMR, pwmChannelR);
+  ledcAttachPin(pinPWML, pwmChannelL);
 
 
   Serial.begin(115200); // activates the serial communication
@@ -87,7 +94,14 @@ void loop() {
   D = (Kd/samplingPeriod)*(errorSignal[0]-2*errorSignal[1]+errorSignal[2]);
   controlSignal[0] = P + I + D + controlSignal[1];
   controlSignal[1] = controlSignal[0];
-  ledcWrite(pwmChannel, 200);
+  if (setPoint - angle > 0){
+    ledcWrite(pwmChannelR, 200); //4095/controlsignal[0]
+    ledcWrite(pwmChannelL, 0);
+  } else {
+    ledcWrite(pwmChannelR, 0);
+    ledcWrite(pwmChannelL, 200);
+  }
+  
 
   previousTime = currentTime;
 
@@ -95,11 +109,11 @@ void loop() {
   someDelay = millis();
   errorSignal[2] = errorSignal[1];
   errorSignal[1] = errorSignal[0];
-  while (millis() < someDelay + h){}
+  while (millis() < someDelay + samplingPeriod){}
 }
 
 
-//u(t) =Kd/h·[e(t)−2e(t−1) + e(t−2)] + Kp·[e(t)−e(t−1)] + h·Ki·e(t) + u(t−1)
+// u(t) =Kd/h·[e(t)−2e(t−1) + e(t−2)] + Kp·[e(t)−e(t−1)] + h·Ki·e(t) + u(t−1)
 /*
 Pseudo code
 x=0 initialization of past values for first time trough the loop
