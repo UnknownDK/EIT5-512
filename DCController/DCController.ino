@@ -17,9 +17,9 @@ double gearRatio = 6.1838;
 double angPrStep = 360.0/(2000.0*gearRatio);
 
 
-double Kd = 0;  // Differential gain
-double Kp = 0;  // Proportional gain
-double Ki = 0;  // Integrator gain
+double Kd = 5;  // Differential gain
+double Kp = 5;  // Proportional gain
+double Ki = 5;  // Integrator gain
 double P,I,D = 0;
 double samplingPeriod = 1;   // 1/frekvens (enhed er millis)
 
@@ -43,6 +43,7 @@ void isrA(){
   } else if((digitalRead(Encoder_output_A) == HIGH) and (digitalRead(Encoder_output_B)) == HIGH){
     angle -= angPrStep;
   }
+  digitalWrite(2, HIGH);
 }
 
 void isrB(){
@@ -55,12 +56,15 @@ void isrB(){
   } else if((digitalRead(Encoder_output_B) == HIGH) and (digitalRead(Encoder_output_A) == LOW)){
     angle -= angPrStep;
   }
+  digitalWrite(2, LOW);
 }
 
 void setup(){
   // configure LED PWM functionalitites
   ledcSetup(pwmChannelR, freq, resolution);
   ledcSetup(pwmChannelL, freq, resolution);
+
+  pinMode(2, OUTPUT);
 
   
   // attach the channel to the GPIO to be controlled
@@ -87,6 +91,8 @@ void loop() {
   setPoint = 45;            //bliver sat af vinkelberegning
   
   errorSignal[0] = setPoint - angle;
+  
+  Serial.print("ERROR: "); Serial.println(errorSignal[0]);
 
   // Controllerdelen
   P = Kp*(errorSignal[0]-errorSignal[1]);
@@ -94,6 +100,9 @@ void loop() {
   D = (Kd/samplingPeriod)*(errorSignal[0]-2*errorSignal[1]+errorSignal[2]);
   controlSignal[0] = P + I + D + controlSignal[1];
   controlSignal[1] = controlSignal[0];
+  
+  Serial.print("CONTROLLER: "); Serial.println(controlSignal[0]);
+  
   if (setPoint - angle > 0){
     ledcWrite(pwmChannelR, 200); //4095/controlsignal[0]
     ledcWrite(pwmChannelL, 0);
@@ -104,7 +113,7 @@ void loop() {
   
 
   previousTime = currentTime;
-
+  
   // Venter på tiden h som er tiden mellem samples
   someDelay = millis();
   errorSignal[2] = errorSignal[1];
