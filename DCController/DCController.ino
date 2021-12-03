@@ -17,11 +17,11 @@ double gearRatio = 6.1838;
 double angPrStep = 360.0/(2000.0*gearRatio);
 
 
-double Kd = 5;  // Differential gain
-double Kp = 5;  // Proportional gain
-double Ki = 5;  // Integrator gain
+double Kd = 0.0005;  // Differential gain
+double Kp = 200;  // Proportional gain
+double Ki = 0.1;  // Integrator gain
 double P,I,D = 0;
-double samplingPeriod = 1;   // 1/frekvens (enhed er millis)
+double samplingPeriod = 15;   // 1/frekvens (enhed er millis)
 
 double angle = 0;         // y(t) (DER VI ER - LÆSES MED ENCODER) 
 double controlSignal[2] = {0, 0}; // u(t)
@@ -63,6 +63,8 @@ void setup(){
   // configure LED PWM functionalitites
   ledcSetup(pwmChannelR, freq, resolution);
   ledcSetup(pwmChannelL, freq, resolution);
+  
+  setPoint = 45;            //bliver sat af vinkelberegning
 
   pinMode(2, OUTPUT);
 
@@ -87,8 +89,7 @@ void setup(){
 void loop() {
   currentTime = millis();
   elapsedTime = (double)(currentTime - previousTime);
-  errorSignal[0] = angle;
-  setPoint = 45;            //bliver sat af vinkelberegning
+  setPoint += 0.05;            //bliver sat af vinkelberegning
   
   errorSignal[0] = setPoint - angle;
   
@@ -101,16 +102,17 @@ void loop() {
   controlSignal[0] = P + I + D + controlSignal[1];
   controlSignal[1] = controlSignal[0];
   
-  Serial.print("CONTROLLER: "); Serial.println(controlSignal[0]);
+  //Serial.print("CONTROLLER: "); Serial.println(controlSignal[0]);
+  //Serial.print("Setpoint: "); Serial.println(setPoint);
   
-  if (setPoint - angle > 0){
-    ledcWrite(pwmChannelR, 200); //4095/controlsignal[0]
-    ledcWrite(pwmChannelL, 0);
+  if (controlSignal[0] > 0){
+    ledcWrite(pwmChannelR, 0); //4095/controlsignal[0]
+    ledcWrite(pwmChannelL, abs(controlSignal[0]));
   } else {
-    ledcWrite(pwmChannelR, 0);
-    ledcWrite(pwmChannelL, 200);
+    ledcWrite(pwmChannelR, abs(controlSignal[0]));
+    ledcWrite(pwmChannelL, 0);
   }
-  
+ 
 
   previousTime = currentTime;
   
