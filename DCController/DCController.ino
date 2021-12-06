@@ -11,15 +11,14 @@ const int pinPWML = 17;  // blå ledning
 const int freq = 10000; // PWM frekvens
 const int pwmChannelR = 0; // Ved jeg ikke helt hvad gør
 const int pwmChannelL = 1; // Ved jeg ikke helt hvad gør
-const int resolution = 12; // bit resolution tror jeg (så 0 - 4095)
+const int resolution = 13; // bit resolution tror jeg (så 0 - 4095)
  
 double gearRatio = 6.1838;
 double angPrStep = 360.0/(2000.0*gearRatio);
 
-
-double Kd = 0.0005;  // Differential gain
-double Kp = 200;  // Proportional gain
-double Ki = 0.1;  // Integrator gain
+double Kd = 0.1;  // Differential gain
+double Kp = 25;  // Proportional gain 0.0005, 5, 200
+double Ki = 350;  // Integrator gain
 double P,I,D = 0;
 double samplingPeriod = 15;   // 1/frekvens (enhed er millis)
 
@@ -89,7 +88,8 @@ void setup(){
 void loop() {
   currentTime = millis();
   elapsedTime = (double)(currentTime - previousTime);
-  setPoint += 0.05;            //bliver sat af vinkelberegning
+
+  setPoint += 0.011;            //bliver sat af vinkelberegning
   
   errorSignal[0] = setPoint - angle;
   
@@ -99,8 +99,14 @@ void loop() {
   P = Kp*(errorSignal[0]-errorSignal[1]);
   I = samplingPeriod*Ki*errorSignal[0];
   D = (Kd/samplingPeriod)*(errorSignal[0]-2*errorSignal[1]+errorSignal[2]);
-  controlSignal[0] = P + I + D + controlSignal[1];
+  controlSignal[0] = 0.25*(P + I + D + controlSignal[1]);
+  if(controlSignal[0]>8191){
+    controlSignal[0] = 8191;
+  } else if (controlSignal[0]<-8191){
+    controlSignal[0] = -8191;
+  }
   controlSignal[1] = controlSignal[0];
+  Serial.print("Controlsignal: "); Serial.println(controlSignal[0]);
   
   //Serial.print("CONTROLLER: "); Serial.println(controlSignal[0]);
   //Serial.print("Setpoint: "); Serial.println(setPoint);
