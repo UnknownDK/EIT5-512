@@ -1,0 +1,17 @@
+Change Component Designator: OldDesignator=C? NewDesignator=C4
+Change Component Designator: OldDesignator=C? NewDesignator=C5
+Change Component Designator: OldDesignator=C? NewDesignator=C6
+Change Component Designator: OldDesignator=C? NewDesignator=C7
+Change Component Designator: OldDesignator=C? NewDesignator=C8
+Change Component Designator: OldDesignator=C? NewDesignator=C9
+Added Component: Designator=P2(HDR1X2)
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=+3.3V Pin=P2-1
+Added Member To Class: ClassName=Sheet1 Member=Component C4
+Added Member To Class: ClassName=Sheet1 Member=Component C6
+Added Member To Class: ClassName=Sheet1 Member=Component C7
+Added Member To Class: ClassName=Sheet1 Member=Component C8
+Added Member To Class: ClassName=Sheet1 Member=Component C9
+Added Member To Class: ClassName=Sheet1 Member=Component P2 Header 2
