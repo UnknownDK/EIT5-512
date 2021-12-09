@@ -16,7 +16,7 @@ const int resolution = 13; // bit resolution tror jeg (så 0 - 8k)
 double gearRatio = 6.1838;
 double angPrStep = 360.0/(2000.0*gearRatio);
 
-double Kd = 2.5; //18.2;  // Differential gain
+double Kd = 18.2;  // Differential gain
 double Kp = 309.6;  // Proportional gain 0.0005, 5, 200
 double Ki = 1350.6;  // Integrator gain
 double P,I,D = 0;
@@ -63,7 +63,7 @@ void setup(){
   ledcSetup(pwmChannelR, freq, resolution);
   ledcSetup(pwmChannelL, freq, resolution);
   
-  setPoint = 0;            //bliver sat af vinkelberegning
+  setPoint = 45;            //bliver sat af vinkelberegning
 
   pinMode(2, OUTPUT);
 
@@ -83,14 +83,12 @@ void setup(){
 }
 
 
-
-
 void loop() {
   currentTime = millis();
   elapsedTime = (double)(currentTime - previousTime);
 
-  //setPoint += 0.011;            //bliver sat af vinkelberegning
-  
+  setPoint += 0.011;            //bliver sat af vinkelberegning
+
   errorSignal[0] = setPoint - angle;
   //Serial.print("ERROR: "); Serial.println(errorSignal[0]);
 
@@ -98,7 +96,7 @@ void loop() {
   P = Kp*(errorSignal[0]-errorSignal[1]);
   I = (samplingPeriod/1000)*Ki*errorSignal[0];
   D = (Kd/(samplingPeriod/1000))*(errorSignal[0]-2*errorSignal[1]+errorSignal[2]);
-  controlSignal[0] = 8.191*(P + I + D) + controlSignal[1]; // burde ganges med 81.91, men det bliver for meget
+  controlSignal[0] = 8.191*(P + I + D) + controlSignal[1]*0.5; // burde ganges med 81.91, men det bliver for meget
   if(controlSignal[0]>8191){
     controlSignal[0] = 8191;
   } else if (controlSignal[0]<-8191){
@@ -106,7 +104,7 @@ void loop() {
   }
   controlSignal[1] = controlSignal[0];
   
-  //Serial.print("Controlsignal: "); Serial.println(controlSignal[0]);
+  Serial.print("Controlsignal: "); Serial.println(controlSignal[0]);
   //Serial.print("CONTROLLER: "); Serial.println(controlSignal[0]);
   //Serial.print("Setpoint: "); Serial.println(setPoint);
   
@@ -121,26 +119,27 @@ void loop() {
 
   previousTime = currentTime;
   
-  
-
-  setPoint += 0.011;
-  someDelay = millis();
-  
   errorSignal[2] = errorSignal[1];
   errorSignal[1] = errorSignal[0];
 
+  //someDelay = millis();
+  //setPoint += 0.11;
 
+  //logging
   Serial.print(millis());
-  Serial.print(",");
-  Serial.print(errorSignal[0]);
-  Serial.print(",");
-  Serial.print(setPoint);
   Serial.print(",");
   Serial.print(angle);
   Serial.print("\n");
-
   
   // Venter på tiden h som er tiden mellem samples
-  //while (millis() < someDelay + samplingPeriod){}
-  while (millis() - currentTime < samplingPeriod){}
+  //while (millis() < someDelay + samplingPeriod){} 
+  while (millis() - currentTime < samplingPeriod){
+    //Serial.println("Hello, vi afventer");
+    }
+  
+
+
 }
+
+
+// u(t) =Kd/h·[e(t)−2e(t−1) + e(t−2)] + Kp·[e(t)−e(t−1)] + h·Ki·e(t) + u(t−1)
