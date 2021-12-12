@@ -2,35 +2,33 @@
 clearvars
 tic
 
+%signaler
+f1 = linspace(280e6, 300e6,60);
+theta_a = pi; 
+f2 = linspace(280e6, 300e6,60);
+theta_b = pi/2;
 
 Clambda = 0.1228658;
 vOensket = (Clambda * 90)/(360 * 0.75 *Clambda);
 droneVinkelOensket = (asin(vOensket)) * 180 / pi;
 
 
-fs = 87.1e2;
-snr_range = [10];%20 30 40 50 60 70 80]; %hvad tester vi af SNR f
+fs = 42.9e6;
+sample_range = [256 256 2048]; %antal samples vi tester?? 
+snr_range = linspace(10, 58, 13); %hvad tester vi af SNR f
 b_range = [12 2 12];      %hvad bits tester vi med
 e_range = [0.9:0.05:0.9];
 
+antalSample = round((sample_range(3) - sample_range(1)) / sample_range(2));
 antalB = round((b_range(3) - b_range(1)) / b_range(2));
 antalSNR = length(snr_range);
-antalTests = 1;
+antalTests = 1500;
 
 filterDC = 128;
-samples = 2^20;
-Tmax = (samples/fs)/2;%samples/fs;
-t = -Tmax:1/fs:Tmax-1/fs;
+samples = 2^17;
+Tmax = samples/fs;
+t = 0:1/fs:Tmax-1/fs;
 
-
-%signaler
-fh = 300e2;
-fl = 280e2;
-theta_a = -pi/4; 
-theta_b = pi/4;
-ting = 2*fh*sinc(2*fh*t);
-a = (2*fh*sinc(2*fh*(t+theta_a))) - (2*fl*sinc(2*fl*(t+theta_a)));
-b = (2*fh*sinc(2*fh*(t+theta_b))) - (2*fl*sinc(2*fl*(t+theta_b)));
 
 %for fftB = 9:1:10
 N = samples;           % oploesning af FFT
@@ -46,29 +44,38 @@ droneResult = zeros(antalB,antalSNR);
 %
 
     
-Bits = 12;          % Bit number.    
+Bits = 8;          % Bit number.    
 eInput = 0.9;
 
+partition = [-1:(2)/(2^Bits):1-(2)/(2^Bits)];
+codebook = [-1:(2)/(2^Bits):1-(2)/(2^Bits)];
+
+%Signaler
+a = signalGen(f1,theta_a,t);
+b = signalGen(f1,theta_b,t);%cos((2*pi*300e6*t)+theta_b)+cos((2*pi*301e6*t)+theta_b)+cos((2*pi*289e6*t)+theta_b)+cos((2*pi*299e6*t)+theta_b)+cos((2*pi*293.6e6*t)+theta_b);
 
 aSampled = eInput*rescale(a,-1,1);
 bSampled = eInput*rescale(b,-1,1); 
 
+
+fejl = zeros(1,antalSNR);
 for run_SNR = 1:1:antalSNR
-    snrLevel = 120;%snr_range(1) - 10 + (run_SNR * 10);
+    snrLevel = snr_range(1) - 4 + (run_SNR * 4);
     
     faseDif = zeros(antalTests,1);
     v = zeros(antalTests,1);
     droneVinkel = zeros(antalTests,1);
     difference = zeros(antalTests,1);
-    for runI = 1:antalTests
+    failCounter = zeros(antalTests,1);
+
+    parfor runI = 1:antalTests
     
         aNoise = awgn(aSampled,snrLevel,'measured');
         bNoise = awgn(bSampled,snrLevel,'measured');
     
         % ADC: Quantizer
         % Quantizing (abs of input value not over 1)
-        partition = [-1:(2)/(2^Bits):1-(2)/(2^Bits)];
-        codebook = [-1:(2)/(2^Bits):1-(2)/(2^Bits)];
+
         aDigital = quantiz(aNoise,partition,codebook); 
         bDigital = quantiz(bNoise,partition,codebook);    
 
@@ -85,19 +92,18 @@ for run_SNR = 1:1:antalSNR
             B(i) = 0;
         end
 
-        difAntal = 7000;
+        difAntal = 12;
         fase = zeros(1,difAntal);
         index = zeros(1,difAntal);
         faseA = zeros(1,difAntal);
         faseB = zeros(1,difAntal);
         for i = 1:1:difAntal
-            %[maxAmpValB, index(i)] = max(abs(B));
-            index(i) = 9.45e+05 + i*3;
+            [maxAmpValB, index(i)] = max(abs(B));
             faseB(i) = angle(B(index(i))) * 180 / pi;
             faseA(i) = angle(A(index(i))) * 180 / pi;
             B(index(i)) = 0;
             A(index(i)) = 0;
-            fase(i) = mod(abs(faseA(i) - faseB(i)),180);
+            fase(i) = mod(abs(faseB(i) - faseA(i)),180);
         end
 
 
@@ -105,9 +111,13 @@ for run_SNR = 1:1:antalSNR
         v(runI) = (Clambda * faseDif(runI))/(360 * 0.75 *Clambda);
         droneVinkel(runI) = (asin(v(runI))) * 180 / pi;
         difference(runI) = droneVinkelOensket - droneVinkel(runI);
-    
+        
+        if difference(runI) > 0.003
+            failCounter(runI) = 1;
+        end
 
     end
+    fejl(run_SNR) = sum(failCounter);
     difference = abs(difference);
     difResult(run_SNR) = mean(difference,'all');
     %faseResult(b_taeller,snr_taeller) = mean(faseDif,'all');
