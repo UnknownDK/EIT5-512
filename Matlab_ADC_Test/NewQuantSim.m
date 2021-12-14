@@ -16,7 +16,7 @@ droneVinkelOensket = (asin(vOensket)) * 180 / pi
 fs = 42e6;
 sample_range = [256 256 2048]; %antal samples vi tester?? 
 snr_range = [46 1 49]; %hvad tester vi af SNR f
-b_range = [12 2 12];      %hvad bits tester vi med
+b_range = [4 2 14];      %hvad bits tester vi med
 
 antalSample = round((sample_range(3) - sample_range(1)) / sample_range(2));
 antalB = round((b_range(3) - b_range(1)) / b_range(2));
