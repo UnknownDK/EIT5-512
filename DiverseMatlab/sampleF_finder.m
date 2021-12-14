@@ -8,8 +8,8 @@ channel1 = freqFinder(0)
 
 
 function result = freqFinder(i)
-    fl = 297.23 + i
-    fh = fl + 5;
+    fl = 290 + i
+    fh = fl + 20;
 
     x = floor(fh / (fh-fl));
     result = zeros(2,x);
