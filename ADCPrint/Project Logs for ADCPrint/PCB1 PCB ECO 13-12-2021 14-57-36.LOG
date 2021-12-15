@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=DVDD Pin=C7-1
+Removed Pin From Net: NetName=GND Pin=C7-2
+Removed Pin From Net: NetName=DVDD Pin=C8-1
+Removed Pin From Net: NetName=GND Pin=C8-2
+Removed Pin From Net: NetName=DVDD Pin=C9-1
+Removed Pin From Net: NetName=GND Pin=C9-2
+Removed Member From Class: ClassName=Sheet1 Member=C7
+Removed Member From Class: ClassName=Sheet1 Member=C8
+Removed Member From Class: ClassName=Sheet1 Member=C9

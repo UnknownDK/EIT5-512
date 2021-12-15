@@ -1,0 +1,21 @@
+Removed Pin From Net: NetName=AVDD Pin=C4-1
+Removed Pin From Net: NetName=GND Pin=C4-2
+Removed Pin From Net: NetName=AVDD Pin=C6-1
+Removed Pin From Net: NetName=GND Pin=C6-2
+Removed Pin From Net: NetName=AVDD Pin=C7-1
+Removed Pin From Net: NetName=AVDD Pin=C8-1
+Removed Pin From Net: NetName=AVDD Pin=C9-1
+Removed Pin From Net: NetName=AVDD Pin=P2-1
+Removed Pin From Net: NetName=GND Pin=P2-2
+Removed Pin From Net: NetName=AVDD Pin=U1-24
+Removed Member From Class: ClassName=Sheet1 Member=C4
+Removed Member From Class: ClassName=Sheet1 Member=C6
+Change Component Footprint: Designator=P2 Old Footprint=HDR1X2 New Footprint=HDR1X3
+Added Pin To Net: NetName=AVDD Pin=P2-2
+Added Pin To Net: NetName=GND Pin=P2-3
+Added Pin To Net: NetName=DVDD Pin=C7-1
+Added Pin To Net: NetName=DVDD Pin=C8-1
+Added Pin To Net: NetName=DVDD Pin=C9-1
+Added Pin To Net: NetName=DVDD Pin=P2-1
+Added Pin To Net: NetName=DVDD Pin=U1-24
+Added Net: Name=DVDD

@@ -1,0 +1,7 @@
+Removed Pin From Net: NetName=GND Pin=P1-8
+Added Pin To Net: NetName=GND Pin=P1-9
+Added Pin To Net: NetName=NetP1_8 Pin=P1-8
+Added Pin To Net: NetName=NetP1_8 Pin=R19-2
+Added Net: Name=NetP1_8
+Change Room Name: Old Name=Maaleforstaerker_2019 New Name=Sheet1
+Change Room Scope: Old Scope=InComponentClass('Maaleforstaerker_2019') New Scope=InComponentClass('Sheet1')

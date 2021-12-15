@@ -1,0 +1,2 @@
+Change Room Name: Old Name=Maaleforstaerker_2019 New Name=Sheet1
+Change Room Scope: Old Scope=InComponentClass('Maaleforstaerker_2019') New Scope=InComponentClass('Sheet1')
