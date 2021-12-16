@@ -1,0 +1,443 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD21\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">16-12-2021</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">22:42:07</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc" class="file"><acronym title="C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc">C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">33</td></tr>
+</table>
+</td>
+</table><a name="IDRA4XQS3A4MV3OUC2P1NB420J3DPGMAJG4QO1T4J4S5IWCJYNSY4N"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDC4I5UHBXTQS2EMRZ5W5OEXIHWGCMLMIP4LPH2POM4TQ53KUZXO2G">Clearance Constraint (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDVMVBHAVAARKUKEI2MUJRUTU40CIWOHAZ2YY0ERQX2LNGPPM5ROJ">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDT4TGDFNULC4DHW53CUU44KQU3L431UERWLRMA3B0TSOMZEBZ5WED">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">19</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDNMJJZIJ0QJMX4ZEXZBXGJGSCGORLOKHA5E3DOOIAC3RZHKDK2EH">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDIICMTPBA4YFNNFJ14JREXJOPODEUHPVSAIHFKCFKGEFAO3JZPINP">Width Constraint (Min=2.647mm) (Max=2.647mm) (Preferred=2.647mm) (InNetClass('RF'))</a></td>
+<td class="column2">3</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID4TOG0RUF3OLBF2LZ1GOZVDJNSLN40ER4NSJQAYNFKZJFZCAGYEVB">Width Constraint (Min=0.254mm) (Max=0.254mm) (Preferred=0.254mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDAPOEOA4PFZW2FEA4EK3L5ERKNJVEERGSV00SEXJH4SGUEVX3CHVJ">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.305mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDD4LDQ2WNJRQ3FM5H3ZANTTOZNLTD1JWMJNXCFMNN4J1KLT02BN3P">Hole Size Constraint (Min=0.7mm) (Max=3mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDT2ESOZSMHIXFG2YDPIVZ5ZW2FLU2BO0Q2SZXUHMPBXBZYTK0TZ5H">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDNVD5GAM4ZJ2QBRTD2IIMPQH4BIATVR50LHD2SUGZXOP0L5AO5RQD">Minimum Solder Mask Sliver (Gap=0.125mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDZF0IIZJYWBDM4LYHF0G1E3A3K3L3O3D0K2XAECZ4S3GKOXJLPXH">Silk To Solder Mask (Clearance=0.1mm) (IsPad),(All)</a></td>
+<td class="column2">5</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDIGFNYOCJYKS1BPV1XH2NILOYHKGTODANVS50HOICWDCDCRQQTL2K">Silk to Silk (Clearance=0.12mm) (All),(All)</a></td>
+<td class="column2">6</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID4XPETM1FXTSMDO2U55KLDMOMUGRRIGN2XNCLNTBKJTOX153YDLDE">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID5VZFRRCEOCLWO4VJDNJ2IIXAMDBVHKTZOCMID0KJLET2XJAO0R4G">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">33</td>
+</tr>
+</table><br><a name="IDT4TGDFNULC4DHW53CUU44KQU3L431UERWLRMA3B0TSOMZEBZ5WED"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6604.268mil|Location2.X=6645.732mil|Location1.Y=1898.756mil|Location2.Y=2181.244mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6604.268mil|Location2.X=6645.732mil|Location1.Y=1898.756mil|Location2.Y=2181.244mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C2-1(168.275mm,48.755mm) on Top Layer And Pad C1-1(168.275mm,54.877mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6519.268mil|Location2.X=6645.732mil|Location1.Y=2139.78mil|Location2.Y=2181.244mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6519.268mil|Location2.X=6645.732mil|Location1.Y=2139.78mil|Location2.Y=2181.244mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C3-1(166.116mm,54.877mm) on Top Layer And Pad C1-1(168.275mm,54.877mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6604.268mil|Location2.X=6843.207mil|Location1.Y=2006.473mil|Location2.Y=2181.244mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6604.268mil|Location2.X=6843.207mil|Location1.Y=2006.473mil|Location2.Y=2181.244mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C1-1(168.275mm,54.877mm) on Top Layer And Pad P1-2(172.966mm,51.816mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6594.228mil|Location2.X=6702.622mil|Location1.Y=1679.228mil|Location2.Y=1940.22mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6594.228mil|Location2.X=6702.622mil|Location1.Y=1679.228mil|Location2.Y=1940.22mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C2-1(168.275mm,48.755mm) on Top Layer And Pad J2-2(168.87mm,44.029mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6392.255mil|Location2.X=6560.732mil|Location1.Y=2139.78mil|Location2.Y=2227.745mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6392.255mil|Location2.X=6560.732mil|Location1.Y=2139.78mil|Location2.Y=2227.745mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C5-2(163.108mm,55.84mm) on Top Layer And Pad C3-1(166.116mm,54.877mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6519.268mil|Location2.X=6603.528mil|Location1.Y=2139.78mil|Location2.Y=2368.528mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6519.268mil|Location2.X=6603.528mil|Location1.Y=2139.78mil|Location2.Y=2368.528mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C3-1(166.116mm,54.877mm) on Top Layer And Pad P2-2(166.878mm,59.309mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6250.68mil|Location2.X=6405.732mil|Location1.Y=2380.68mil|Location2.Y=2481.244mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6250.68mil|Location2.X=6405.732mil|Location1.Y=2380.68mil|Location2.Y=2481.244mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C4-2(159.512mm,61.214mm) on Top Layer And Pad C6-2(162.179mm,62.497mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6364.268mil|Location2.X=6450.895mil|Location1.Y=2169.105mil|Location2.Y=2481.244mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6364.268mil|Location2.X=6450.895mil|Location1.Y=2169.105mil|Location2.Y=2481.244mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C6-2(162.179mm,62.497mm) on Top Layer And Pad C5-2(163.108mm,55.84mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5704.228mil|Location2.X=5812.622mil|Location1.Y=1462.378mil|Location2.Y=1767.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5704.228mil|Location2.X=5812.622mil|Location1.Y=1462.378mil|Location2.Y=1767.622mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J1-3(146.264mm,38.521mm) on Multi-Layer And Pad J1-2(146.264mm,43.521mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5507.378mil|Location2.X=5812.622mil|Location1.Y=1462.378mil|Location2.Y=1570.772mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5507.378mil|Location2.X=5812.622mil|Location1.Y=1462.378mil|Location2.Y=1570.772mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J1-4(141.264mm,38.521mm) on Multi-Layer And Pad J1-3(146.264mm,38.521mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5704.228mil|Location2.X=6188.779mil|Location1.Y=1462.378mil|Location2.Y=1570.772mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5704.228mil|Location2.X=6188.779mil|Location1.Y=1462.378mil|Location2.Y=1570.772mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J1-3(146.264mm,38.521mm) on Multi-Layer And Pad L2-1(156.845mm,38.822mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5507.378mil|Location2.X=5615.772mil|Location1.Y=1462.378mil|Location2.Y=1767.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5507.378mil|Location2.X=5615.772mil|Location1.Y=1462.378mil|Location2.Y=1767.622mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J1-4(141.264mm,38.521mm) on Multi-Layer And Pad J1-5(141.264mm,43.521mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5507.378mil|Location2.X=5615.772mil|Location1.Y=1659.228mil|Location2.Y=1853.78mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5507.378mil|Location2.X=5615.772mil|Location1.Y=1659.228mil|Location2.Y=1853.78mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad L1-1(140.93mm,46.736mm) on Top Layer And Pad J1-5(141.264mm,43.521mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6594.228mil|Location2.X=6702.622mil|Location1.Y=1482.378mil|Location2.Y=1787.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6594.228mil|Location2.X=6702.622mil|Location1.Y=1482.378mil|Location2.Y=1787.622mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J2-3(168.87mm,39.029mm) on Multi-Layer And Pad J2-2(168.87mm,44.029mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6397.378mil|Location2.X=6702.622mil|Location1.Y=1482.378mil|Location2.Y=1590.772mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6397.378mil|Location2.X=6702.622mil|Location1.Y=1482.378mil|Location2.Y=1590.772mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J2-4(163.87mm,39.029mm) on Multi-Layer And Pad J2-3(168.87mm,39.029mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6397.378mil|Location2.X=6505.772mil|Location1.Y=1482.378mil|Location2.Y=1787.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6397.378mil|Location2.X=6505.772mil|Location1.Y=1482.378mil|Location2.Y=1787.622mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J2-4(163.87mm,39.029mm) on Multi-Layer And Pad J2-5(163.87mm,44.029mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6161.221mil|Location2.X=6505.772mil|Location1.Y=1482.378mil|Location2.Y=1590.772mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6161.221mil|Location2.X=6505.772mil|Location1.Y=1482.378mil|Location2.Y=1590.772mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad L2-1(156.845mm,38.822mm) on Top Layer And Pad J2-4(163.87mm,39.029mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6089.53mil|Location2.X=6188.779mil|Location1.Y=1515.63mil|Location2.Y=1878.806mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6089.53mil|Location2.X=6188.779mil|Location1.Y=1515.63mil|Location2.Y=1878.806mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad Q1-2(155.176mm,47.17mm) on Top Layer And Pad L2-1(156.845mm,38.822mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6026.538mil|Location2.X=6129.026mil|Location1.Y=1796.003mil|Location2.Y=1878.806mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6026.538mil|Location2.X=6129.026mil|Location1.Y=1796.003mil|Location2.Y=1878.806mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad Q1-4(153.576mm,46.02mm) on Top Layer And Pad Q1-2(155.176mm,47.17mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDIICMTPBA4YFNNFJ14JREXJOPODEUHPVSAIHFKCFKGEFAO3JZPINP"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Width Constraint (Min=2.647mm) (Max=2.647mm) (Preferred=2.647mm) (InNetClass('RF'))</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5621.099mil|Location2.X=5698.901mil|Location1.Y=1676.099mil|Location2.Y=1753.901mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5621.099mil|Location2.X=5698.901mil|Location1.Y=1676.099mil|Location2.Y=1753.901mil|Absolute=True">Width Constraint: Track (143.764mm,43.053mm)(143.764mm,44.069mm) on Top Layer Actual Width = 1.9mm, Target Width = 2.647mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6422.081mil|Location2.X=6504.972mil|Location1.Y=1596.099mil|Location2.Y=1673.901mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6422.081mil|Location2.X=6504.972mil|Location1.Y=1596.099mil|Location2.Y=1673.901mil|Absolute=True">Width Constraint: Track (162.814mm,41.529mm)(165.404mm,41.529mm) on Top Layer Actual Width = 1.9mm, Target Width = 2.647mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6476.49mil|Location2.X=6559.972mil|Location1.Y=1595.508mil|Location2.Y=1674.492mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6476.49mil|Location2.X=6559.972mil|Location1.Y=1595.508mil|Location2.Y=1674.492mil|Absolute=True">Width Constraint: Track (165.404mm,41.529mm)(165.608mm,41.529mm) on Top Layer Actual Width = 1.93mm, Target Width = 2.647mm</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDZF0IIZJYWBDM4LYHF0G1E3A3K3L3O3D0K2XAECZ4S3GKOXJLPXH"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.1mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6642.178mil|Location2.X=6645.803mil|Location1.Y=2089.168mil|Location2.Y=2092.793mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6642.178mil|Location2.X=6645.803mil|Location1.Y=2089.168mil|Location2.Y=2092.793mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Pad C1-2(168.275mm,53.327mm) on Top Layer And Text "C2" (167.996mm,51.587mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5539.178mil|Location2.X=5542.803mil|Location1.Y=1824.408mil|Location2.Y=1828.033mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5539.178mil|Location2.X=5542.803mil|Location1.Y=1824.408mil|Location2.Y=1828.033mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Pad L1-1(140.93mm,46.736mm) on Top Layer And Text "J1" (139.979mm,45.822mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5584.785mil|Location2.X=5589.972mil|Location1.Y=1823.627mil|Location2.Y=1828.814mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5584.785mil|Location2.X=5589.972mil|Location1.Y=1823.627mil|Location2.Y=1828.814mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.071mm &lt; 0.1mm) Between Pad L1-2(142.28mm,46.736mm) on Top Layer And Text "J1" (139.979mm,45.822mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.071mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6696.179mil|Location2.X=6699.804mil|Location1.Y=2029.188mil|Location2.Y=2032.812mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6696.179mil|Location2.X=6699.804mil|Location1.Y=2029.188mil|Location2.Y=2032.812mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Pad P1-1(170.426mm,51.816mm) on Multi-Layer And Text "C2" (167.996mm,51.587mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6457.155mil|Location2.X=6460.78mil|Location1.Y=2359.168mil|Location2.Y=2362.793mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6457.155mil|Location2.X=6460.78mil|Location1.Y=2359.168mil|Location2.Y=2362.793mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Pad P2-1(164.338mm,59.309mm) on Multi-Layer And Text "C5" (161.519mm,58.445mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDIGFNYOCJYKS1BPV1XH2NILOYHKGTODANVS50HOICWDCDCRQQTL2K"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.12mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6616.896mil|Location2.X=6621.046mil|Location1.Y=2268.906mil|Location2.Y=2273.055mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6616.896mil|Location2.X=6621.046mil|Location1.Y=2268.906mil|Location2.Y=2273.055mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.12mm) Between Text "C1" (167.996mm,56.159mm) on Top Overlay And Text "C3" (165.837mm,56.159mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6657.605mil|Location2.X=6661.754mil|Location1.Y=2078.909mil|Location2.Y=2083.059mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6657.605mil|Location2.X=6661.754mil|Location1.Y=2078.909mil|Location2.Y=2083.059mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.12mm) Between Text "C2" (167.996mm,51.587mm) on Top Overlay And Track (169.156mm,50.546mm)(169.156mm,53.086mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6702.877mil|Location2.X=6707.026mil|Location1.Y=2087.925mil|Location2.Y=2092.075mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6702.877mil|Location2.X=6707.026mil|Location1.Y=2087.925mil|Location2.Y=2092.075mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.12mm) Between Text "C2" (167.996mm,51.587mm) on Top Overlay And Track (169.156mm,53.086mm)(174.236mm,53.086mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6417.925mil|Location2.X=6422.075mil|Location1.Y=2358.906mil|Location2.Y=2363.055mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6417.925mil|Location2.X=6422.075mil|Location1.Y=2358.906mil|Location2.Y=2363.055mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.12mm) Between Text "C5" (161.519mm,58.445mm) on Top Overlay And Track (163.068mm,58.039mm)(163.068mm,60.579mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5538.916mil|Location2.X=5543.065mil|Location1.Y=1811.922mil|Location2.Y=1816.072mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5538.916mil|Location2.X=5543.065mil|Location1.Y=1811.922mil|Location2.Y=1816.072mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.12mm) Between Text "J1" (139.979mm,45.822mm) on Top Overlay And Track (140.73mm,45.986mm)(142.48mm,45.986mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5548.912mil|Location2.X=5553.062mil|Location1.Y=1861.906mil|Location2.Y=1866.055mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\nikol\Documents\semesterKodeMapper\EIT5-512\LNA_print\LNAproj\LNApcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5548.912mil|Location2.X=5553.062mil|Location1.Y=1861.906mil|Location2.Y=1866.055mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.12mm) Between Text "J1" (139.979mm,45.822mm) on Top Overlay And Track (140.73mm,47.486mm)(142.48mm,47.486mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

@@ -1,0 +1,291 @@
+Removed Member From Class: ClassName=RF Member=NetC?_2
+Change Component Designator: OldDesignator=C? NewDesignator=C8
+Change Component Designator: OldDesignator=L? NewDesignator=L1
+Change Component Designator: OldDesignator=L? NewDesignator=L2
+Change Component Designator: OldDesignator=Q? NewDesignator=Q1
+Added Component: Designator=C1(SMD-0603C)
+Add component (AddParameter): Name = "@ qty"; Value = "0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Applications"; Value = "General Purpose"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheets"; Value = "http://www.murata.com/~/media/webrenewal/support/library/catalog/products/capacitor/mlcc/c02e.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digi-Key Part Number"; Value = "490-10467-1-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Factory Stock"; Value = "0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Features"; Value = "Derating Recommended"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height - Seated (Max)"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Image"; Value = "//media.digikey.com/Renders/Murata%20Renders/ZRB-SERIES-0402.jpg"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lead Spacing"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lead Style"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Murata Electronics North America"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Minimum Quantity"; Value = "1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Type"; Value = "Surface Mount, MLCC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Temperature"; Value = "-55°C ~ 85°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package / Case"; Value = "0603 (1608 Metric)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Packaging"; Value = "Cut Tape (CT)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Number"; Value = "GRM185R60J106ME15D"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Status"; Value = "Active"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Quantity Available"; Value = "25068"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ratings"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Series"; Value = "GRM"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Size / Dimension"; Value = "0.063" L x 0.031" W (1.60mm x 0.80mm)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Temperature Coefficient"; Value = "X5R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Thickness (Max)"; Value = "0.022" (0.55mm)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tolerance"; Value = "±20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Unit Price (USD)"; Value = "0.36"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10µF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage"; Value = "6.3V"; VariantName = "[No Variations]"
+Added Component: Designator=C2(SMD-0603C)
+Add component (AddParameter): Name = "@ qty"; Value = "0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Applications"; Value = "Automotive, Boardflex Sensitive"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheets"; Value = "http://www.murata.com/~/media/webrenewal/support/library/catalog/products/capacitor/mlcc/c03e.ashx"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digi-Key Part Number"; Value = "490-5796-1-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Factory Stock"; Value = "0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Features"; Value = "Soft Termination"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height - Seated (Max)"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Image"; Value = "//media.digikey.com/Renders/Murata%20Renders/0603%28LQG18%29.jpg"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lead Spacing"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lead Style"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Murata Electronics North America"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Minimum Quantity"; Value = "1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Type"; Value = "Surface Mount, MLCC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Temperature"; Value = "-55°C ~ 125°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package / Case"; Value = "0603 (1608 Metric)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Packaging"; Value = "Cut Tape (CT)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Number"; Value = "GCJ188R71C104KA01D"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Status"; Value = "Active"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Quantity Available"; Value = "22473"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ratings"; Value = "AEC-Q200"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Series"; Value = "GCJ"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Size / Dimension"; Value = "0.063" L x 0.031" W (1.60mm x 0.80mm)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Temperature Coefficient"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Thickness (Max)"; Value = "0.035" (0.90mm)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tolerance"; Value = "±10%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Unit Price (USD)"; Value = "0.21"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "0.10µF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage"; Value = "16V"; VariantName = "[No Variations]"
+Added Component: Designator=C3(SMD-0603C)
+Add component (AddParameter): Name = "@ qty"; Value = "0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Applications"; Value = "Automotive"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheets"; Value = "http://www.murata.com/~/media/webrenewal/support/library/catalog/products/capacitor/mlcc/c03e.ashx"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digi-Key Part Number"; Value = "490-4767-1-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Factory Stock"; Value = "0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Features"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height - Seated (Max)"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Image"; Value = "//media.digikey.com/Renders/Murata%20Renders/0603%28GCM188%29.jpg"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lead Spacing"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lead Style"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Murata Electronics North America"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Minimum Quantity"; Value = "1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Type"; Value = "Surface Mount, MLCC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Temperature"; Value = "-55°C ~ 125°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package / Case"; Value = "0603 (1608 Metric)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Packaging"; Value = "Cut Tape (CT)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Number"; Value = "GCM1885C1H101JA16D"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Status"; Value = "Active"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Quantity Available"; Value = "85695"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ratings"; Value = "AEC-Q200"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Series"; Value = "GCM"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Size / Dimension"; Value = "0.063" L x 0.031" W (1.60mm x 0.80mm)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Temperature Coefficient"; Value = "C0G, NP0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Thickness (Max)"; Value = "0.035" (0.90mm)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tolerance"; Value = "±5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Unit Price (USD)"; Value = "0.1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100pF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage"; Value = "50V"; VariantName = "[No Variations]"
+Added Component: Designator=C4(SMD-0603C)
+Add component (AddParameter): Name = "@ qty"; Value = "0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Applications"; Value = "Automotive, Boardflex Sensitive"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheets"; Value = "http://www.murata.com/~/media/webrenewal/support/library/catalog/products/capacitor/mlcc/c03e.ashx"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digi-Key Part Number"; Value = "490-5796-1-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Factory Stock"; Value = "0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Features"; Value = "Soft Termination"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height - Seated (Max)"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Image"; Value = "//media.digikey.com/Renders/Murata%20Renders/0603%28LQG18%29.jpg"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lead Spacing"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lead Style"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Murata Electronics North America"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Minimum Quantity"; Value = "1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Type"; Value = "Surface Mount, MLCC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Temperature"; Value = "-55°C ~ 125°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package / Case"; Value = "0603 (1608 Metric)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Packaging"; Value = "Cut Tape (CT)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Number"; Value = "GCJ188R71C104KA01D"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Status"; Value = "Active"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Quantity Available"; Value = "22473"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ratings"; Value = "AEC-Q200"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Series"; Value = "GCJ"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Size / Dimension"; Value = "0.063" L x 0.031" W (1.60mm x 0.80mm)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Temperature Coefficient"; Value = "X7R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Thickness (Max)"; Value = "0.035" (0.90mm)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tolerance"; Value = "±10%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Unit Price (USD)"; Value = "0.21"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "0.10µF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage"; Value = "16V"; VariantName = "[No Variations]"
+Added Component: Designator=C5(SMD-0603C)
+Add component (AddParameter): Name = "@ qty"; Value = "0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Applications"; Value = "Automotive"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheets"; Value = "http://www.murata.com/~/media/webrenewal/support/library/catalog/products/capacitor/mlcc/c03e.ashx"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digi-Key Part Number"; Value = "490-4767-1-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Factory Stock"; Value = "0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Features"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height - Seated (Max)"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Image"; Value = "//media.digikey.com/Renders/Murata%20Renders/0603%28GCM188%29.jpg"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lead Spacing"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lead Style"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Murata Electronics North America"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Minimum Quantity"; Value = "1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Type"; Value = "Surface Mount, MLCC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Temperature"; Value = "-55°C ~ 125°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package / Case"; Value = "0603 (1608 Metric)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Packaging"; Value = "Cut Tape (CT)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Number"; Value = "GCM1885C1H101JA16D"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Status"; Value = "Active"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Quantity Available"; Value = "85695"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ratings"; Value = "AEC-Q200"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Series"; Value = "GCM"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Size / Dimension"; Value = "0.063" L x 0.031" W (1.60mm x 0.80mm)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Temperature Coefficient"; Value = "C0G, NP0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Thickness (Max)"; Value = "0.035" (0.90mm)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tolerance"; Value = "±5%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Unit Price (USD)"; Value = "0.1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "100pF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage"; Value = "50V"; VariantName = "[No Variations]"
+Added Component: Designator=C6(SMD-0603C)
+Add component (AddParameter): Name = "@ qty"; Value = "0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Applications"; Value = "General Purpose"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheets"; Value = "http://www.murata.com/~/media/webrenewal/support/library/catalog/products/capacitor/mlcc/c02e.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digi-Key Part Number"; Value = "490-10467-1-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Factory Stock"; Value = "0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Features"; Value = "Derating Recommended"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height - Seated (Max)"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Image"; Value = "//media.digikey.com/Renders/Murata%20Renders/ZRB-SERIES-0402.jpg"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lead Spacing"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lead Style"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Murata Electronics North America"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Minimum Quantity"; Value = "1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Type"; Value = "Surface Mount, MLCC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Temperature"; Value = "-55°C ~ 85°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package / Case"; Value = "0603 (1608 Metric)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Packaging"; Value = "Cut Tape (CT)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Number"; Value = "GRM185R60J106ME15D"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Status"; Value = "Active"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Quantity Available"; Value = "25068"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ratings"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Series"; Value = "GRM"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Size / Dimension"; Value = "0.063" L x 0.031" W (1.60mm x 0.80mm)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Temperature Coefficient"; Value = "X5R"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Thickness (Max)"; Value = "0.022" (0.55mm)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tolerance"; Value = "±20%"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Unit Price (USD)"; Value = "0.36"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "10µF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage"; Value = "6.3V"; VariantName = "[No Variations]"
+Added Component: Designator=C7(SMD-0402C)
+Add component (AddParameter): Name = "@ qty"; Value = "0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Applications"; Value = "Automotive"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheets"; Value = "http://www.murata.com/~/media/webrenewal/support/library/catalog/products/capacitor/mlcc/c03e.ashx"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digi-Key Part Number"; Value = "490-13290-1-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Factory Stock"; Value = "0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Features"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height - Seated (Max)"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Image"; Value = "//media.digikey.com/Renders/Murata%20Renders/ZRB-SERIES-0402.jpg"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lead Spacing"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lead Style"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Murata Electronics North America"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Minimum Quantity"; Value = "1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Type"; Value = "Surface Mount, MLCC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Temperature"; Value = "-55°C ~ 125°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package / Case"; Value = "0402 (1005 Metric)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Packaging"; Value = "Cut Tape (CT)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Number"; Value = "GCM1555C1H3R0CA16D"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Status"; Value = "Active"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Quantity Available"; Value = "4400"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Ratings"; Value = "AEC-Q200"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Series"; Value = "GCM"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Size / Dimension"; Value = "0.039" L x 0.020" W (1.00mm x 0.50mm)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Temperature Coefficient"; Value = "C0G, NP0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Thickness (Max)"; Value = "0.022" (0.55mm)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Tolerance"; Value = "±0.25pF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Unit Price (USD)"; Value = "0.1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "3pF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage"; Value = "50V"; VariantName = "[No Variations]"
+Added Component: Designator=J1(LPRS_SMACONNECTOR)
+Add component (AddParameter): Name = "Availability"; Value = "Unavailable"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "SMACONNECTOR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=J2(LPRS_SMACONNECTOR)
+Add component (AddParameter): Name = "Availability"; Value = "Unavailable"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "SMACONNECTOR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=P1(HDR1X2)
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=P2(HDR1X2)
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=C1-1
+Added Pin To Net: NetName=GND Pin=C2-1
+Added Pin To Net: NetName=GND Pin=C3-1
+Added Pin To Net: NetName=GND Pin=C4-2
+Added Pin To Net: NetName=GND Pin=C5-2
+Added Pin To Net: NetName=GND Pin=C6-2
+Added Pin To Net: NetName=GND Pin=J1-2
+Added Pin To Net: NetName=GND Pin=J1-3
+Added Pin To Net: NetName=GND Pin=J1-4
+Added Pin To Net: NetName=GND Pin=J1-5
+Added Pin To Net: NetName=GND Pin=J2-1
+Added Pin To Net: NetName=GND Pin=L1-1
+Added Pin To Net: NetName=GND Pin=L2-1
+Added Pin To Net: NetName=GND Pin=P1-2
+Added Pin To Net: NetName=GND Pin=P2-2
+Added Pin To Net: NetName=GND Pin=Q1-2
+Added Pin To Net: NetName=GND Pin=Q1-4
+Added Net: Name=GND
+Added Pin To Net: NetName=NetC1_2 Pin=C1-2
+Added Pin To Net: NetName=NetC1_2 Pin=C2-2
+Added Pin To Net: NetName=NetC1_2 Pin=C3-2
+Added Pin To Net: NetName=NetC1_2 Pin=C8-2
+Added Pin To Net: NetName=NetC1_2 Pin=P1-1
+Added Pin To Net: NetName=NetC1_2 Pin=Q1-1
+Added Net: Name=NetC1_2
+Added Pin To Net: NetName=NetC4_1 Pin=C4-1
+Added Pin To Net: NetName=NetC4_1 Pin=C5-1
+Added Pin To Net: NetName=NetC4_1 Pin=C6-1
+Added Pin To Net: NetName=NetC4_1 Pin=C7-1
+Added Pin To Net: NetName=NetC4_1 Pin=P2-1
+Added Pin To Net: NetName=NetC4_1 Pin=Q1-3
+Added Net: Name=NetC4_1
+Added Pin To Net: NetName=NetC7_2 Pin=C7-2
+Added Pin To Net: NetName=NetC7_2 Pin=J1-1
+Added Pin To Net: NetName=NetC7_2 Pin=L1-2
+Added Net: Name=NetC7_2
+Added Pin To Net: NetName=NetC8_1 Pin=C8-1
+Added Pin To Net: NetName=NetC8_1 Pin=J2-2
+Added Pin To Net: NetName=NetC8_1 Pin=J2-3
+Added Pin To Net: NetName=NetC8_1 Pin=J2-4
+Added Pin To Net: NetName=NetC8_1 Pin=J2-5
+Added Pin To Net: NetName=NetC8_1 Pin=L2-2
+Added Net: Name=NetC8_1
+Added Member To Class: ClassName=SchematicLNA Member=Component C1 10µF
+Added Member To Class: ClassName=SchematicLNA Member=Component C2 0.10µF
+Added Member To Class: ClassName=SchematicLNA Member=Component C3 100pF
+Added Member To Class: ClassName=SchematicLNA Member=Component C4 0.10µF
+Added Member To Class: ClassName=SchematicLNA Member=Component C5 100pF
+Added Member To Class: ClassName=SchematicLNA Member=Component C6 10µF
+Added Member To Class: ClassName=SchematicLNA Member=Component C7 3pF
+Added Member To Class: ClassName=SchematicLNA Member=Component J1 Output
+Added Member To Class: ClassName=SchematicLNA Member=Component J2 Input
+Added Member To Class: ClassName=SchematicLNA Member=Component L2 1.8nH
+Added Member To Class: ClassName=SchematicLNA Member=Component P1 Header 2
+Added Member To Class: ClassName=SchematicLNA Member=Component P2 Header 2
+Added Member To Class: ClassName=RF Member=Wire NetC1_2
+Added Member To Class: ClassName=RF Member=Wire NetC4_1
+Added Member To Class: ClassName=RF Member=Wire NetC8_1
+Added Room: Name=SchematicLNA
+Added Rule: Name=Schematic Length Constraint
+Added Rule: Name=Schematic Length Constraint_1
