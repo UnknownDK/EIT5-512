@@ -47,6 +47,23 @@ PrefsVaultGUID=
 PrefsRevisionGUID=
 
 [Document1]
+DocumentPath=LNABackup.PcbDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=BTSQHNCV
+
+[Document2]
 DocumentPath=SchematicLNA.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -63,8 +80,8 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=ODASHFLR
 
-[Document2]
-DocumentPath=LNApcb.PcbDoc
+[Document3]
+DocumentPath=LNAreal.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -80,7 +97,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=BTSQHNCV
 
-[Document3]
+[Document4]
 DocumentPath=Test2.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1

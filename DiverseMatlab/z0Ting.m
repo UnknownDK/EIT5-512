@@ -2,7 +2,7 @@ er = 4.9; %relativ permativitet
 W = 0.00265; %bredde 
 h = 0.0015; %hoejde af print
 t = 0.000034; %bane hoejde
-f = 2.44e9; %freq
+f = 2.4e9; %freq
 c = 3e8; %lys speed
 
 a = 88.75 / (sqrt(er + 1.47));
@@ -22,6 +22,7 @@ Zl = 33 - (73i); %aflaest datablad
 Zn = Zl / 50
 
 kvart = lambda/4
+halv = lambda/2
 
 
 %for 50 ohm z0
