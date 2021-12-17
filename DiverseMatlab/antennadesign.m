@@ -1,9 +1,9 @@
 %Size of PCB
-pcbThickness = 1.6e-3;  %1.6mm
+pcbThickness = 3e-3;  %1.6mm
 pcbLength = 152.4e-3;   %152.4mm
 pcbWidth = 101.6e-3;    %101.6mm
 %Specifying Material of PCB
-pcbMaterial = 'FR4';
+pcbMaterial = 'polystyrene';
 pcbEpsilonR = 2.2;
 %Creating dielectic Material
 d = dielectric(pcbMaterial); 
