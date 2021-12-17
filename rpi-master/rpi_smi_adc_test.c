@@ -18,6 +18,7 @@
 // v0.06 JPB 16/7/20 Tidied up for Github
 // Compile med:
 // gcc -Wall -fcommon -pedantic -o rpi_smi_adc_test rpi_smi_adc_test.c rpi_dma_utils.c
+// scp rpi_smi_adc_test.c pi@192.168.128.188:/home/pi/Desktop/rpi-master/
 
 
 #include <stdio.h>
@@ -36,16 +37,16 @@
 
 // SMI cycle timings
 #define SMI_NUM_BITS    SMI_16_BITS
-#define SMI_TIMING      SMI_TIMING_28M // Set SMI timing
+#define SMI_TIMING      SMI_TIMING_1M // Set SMI timing
 
-#if PHYS_REG_BASE==PI_4_REG_BASE        // Timings for RPi v4 (1.5 GHz)
+//#if PHYS_REG_BASE==PI_4_REG_BASE        // Timings for RPi v4 (1.5 GHz)
 #define SMI_TIMING_1M   10, 38, 74, 38  // 1 MS/s
-#define SMI_TIMING_10M   6,  6, 13,  6  // 10 MS/s
-#define SMI_TIMING_20M   4,  5,  9,  5  // 19.74 MS/s
-#define SMI_TIMING_25M   4,  3,  8,  4  // 25 MS/s
-#define SMI_TIMING_31M   4,  3,  6,  3  // 31.25 MS/s
-#else                                   // Timings for RPi v0-3 (1 GHz)
-#define SMI_TIMING_1M   10, 25, 50, 25  // 1 MS/s
+//#define SMI_TIMING_10M   6,  6, 13,  6  // 10 MS/s
+//#define SMI_TIMING_20M   4,  5,  9,  5  // 19.74 MS/s
+//#define SMI_TIMING_25M   4,  3,  8,  4  // 25 MS/s
+//#define SMI_TIMING_31M   4,  3,  6,  3  // 31.25 MS/s
+//#else                                   // Timings for RPi v0-3 (1 GHz)
+//#define SMI_TIMING_1M   10, 25, 50, 25  // 1 MS/s
 #define SMI_TIMING_10M   4,  6, 13,  6  // 10 MS/s
 #define SMI_TIMING_20M   2,  6, 13,  6  // 20 MS/s
 #define SMI_TIMING_25M   2,  5, 10,  5  // 25 MS/s
@@ -53,7 +54,7 @@
 #define SMI_TIMING_31M   2,  4,  6,  4  // 31.25 MS/s
 #define SMI_TIMING_42M   2,  3,  6,  3  // 41.66 MS/s
 #define SMI_TIMING_50M   2,  3,  5,  2  // 50 MS/s
-#endif
+//#endif
 
 // Number of raw bytes per ADC sample
 #define SAMPLE_SIZE     2
@@ -68,7 +69,8 @@
 
 // GPIO pin numbers
 //#define ADC_D0_PIN      12
-int ADC_D0_PIN[12]={8,9,10,11,14,15,17,18,22,23,24,25}; //Ja, den er god nok. Vi har PRÆCIS de 12 SD pins vi skal bruge og ikke ekstra.  
+//int ADC_D0_PIN[12]={8,9,10,11,14,15,17,18,22,23,24,25}; //Ja, den er god nok. Vi har PRÆCIS de 12 SD pins vi skal bruge og ikke ekstra.
+#define ADC_D0_PIN      12  
 #define ADC_NPINS       12
 #define SMI_SOE_PIN     6 //Tror faktisk det her er clocken
 #define SMI_SWE_PIN     7 // Vi bruger den her i stedet
@@ -127,21 +129,25 @@ void dma_wait(int chan);
 
 int main(int argc, char *argv[])
 {
+    printf("1");
     void *rxbuff;
     int i;
-
+    printf("2");
     signal(SIGINT, terminate);
+    printf("3");
     map_devices();
-    /*
+    printf("4");
     for (i=0; i<ADC_NPINS; i++)
         gpio_mode(ADC_D0_PIN+i, GPIO_IN);
-    */
+    printf("5");
+    /*
     for (i=0; i<ADC_NPINS; i++)
         gpio_mode(ADC_D0_PIN[i], GPIO_IN);
-
+    */
     
 
-    gpio_mode(SMI_SWE_PIN, GPIO_ALT1);
+    gpio_mode(SMI_SOE_PIN, GPIO_ALT1);
+    printf("6");
 #if !USE_DMA
     init_smi(SMI_NUM_BITS, SMI_TIMING_1M);
     while (1)
@@ -154,22 +160,28 @@ int main(int argc, char *argv[])
     }
 #else
     init_smi(SMI_NUM_BITS, SMI_TIMING);
+    printf("7");
 #if USE_TEST_PIN
     gpio_mode(TEST_PIN, GPIO_OUT);
     gpio_out(TEST_PIN, 0);
 #endif
     map_uncached_mem(&vc_mem, VC_MEM_SIZE(NSAMPLES+PRE_SAMP));
+    printf("8");
     smi_dmc->dmaen = 1;
     smi_cs->enable = 1;
     smi_cs->clear = 1;
+    printf("6");
     rxbuff = adc_dma_start(&vc_mem, NSAMPLES);
+    printf("7");
     smi_start(NSAMPLES, 1);
     while (dma_active(DMA_CHAN_A)) ;
     adc_dma_end(rxbuff, sample_data, NSAMPLES);
     disp_reg_fields(smi_cs_regstrs, "CS", *REG32(smi_regs, SMI_CS));
     smi_cs->enable = smi_dcs->enable = 0;
     for (i=0; i<NSAMPLES; i++)
-        printf("%1.3f\n", val_volts(sample_data[i]));
+        //printf("%1.3f\n", val_volts(sample_data[i]));
+        printf("%u\n", sample_data[i]);
+    printf("8");
 #endif
     terminate(0);
     return(0);
@@ -200,13 +212,13 @@ void terminate(int sig)
     printf("Closing\n");
     if (gpio_regs.virt)
     {
-        /*
+        
         for (i=0; i<ADC_NPINS; i++)
             gpio_mode(ADC_D0_PIN+i, GPIO_IN);
-        */
+        /*
         for (i=0; i<ADC_NPINS; i++)
             gpio_mode(ADC_D0_PIN[i], GPIO_IN);
-        
+        */
     }
     if (smi_regs.virt)
         *REG32(smi_regs, SMI_CS) = 0;
@@ -239,12 +251,12 @@ uint32_t *adc_dma_start(MEM_MAP *mp, int nsamp)
     for (i=0; i<3; i++)
         modes[i] = modes[i+3] = *REG32(gpio_regs, GPIO_MODE0 + i*4);
     // Get mode values with ADC pins set to SMI
-    //for (i=ADC_D0_PIN; i<ADC_D0_PIN+ADC_NPINS; i++)
-    //    mode_word(&modes[i/10], i%10, GPIO_ALT1);
+    for (i=ADC_D0_PIN; i<ADC_D0_PIN+ADC_NPINS; i++)
+        mode_word(&modes[i/10], i%10, GPIO_ALT1);
     // Her skal vi så lige gennemskue hvad der foregår før vi kan lave et quickfix
     // Hermed mit forsøg på et hack: 
-    for (i=0; i<ADC_NPINS; i++)
-        mode_word(&modes[ADC_D0_PIN[i]/10], ADC_D0_PIN[i]%10, GPIO_ALT1); 
+    //for (i=0; i<ADC_NPINS; i++)
+    //    mode_word(&modes[ADC_D0_PIN[i]/10], ADC_D0_PIN[i]%10, GPIO_ALT1); 
     // Copy mode values into 32-bit words
     *modep1 = modes[1];
     *modep2 = modes[2];
