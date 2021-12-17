@@ -1,0 +1,6 @@
+Change Component Comment : Designator=C4 Old Comment=1.36nF New Comment=680pF
+Change Component Comment : Designator=L8 Old Comment=220nH New Comment=1nH
+Change Component Comment : Designator=L9 Old Comment=220nH New Comment=1nH
+Added Member To Class: ClassName=Sheet2 Member=Component C3 470pF
+Added Member To Class: ClassName=Sheet2 Member=Component L10 0.67nH
+Added Room: Name=Sheet2

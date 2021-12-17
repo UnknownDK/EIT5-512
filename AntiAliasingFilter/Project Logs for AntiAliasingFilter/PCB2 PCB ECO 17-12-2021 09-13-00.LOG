@@ -1,0 +1,15 @@
+Change Component Footprint: Designator=L? Old Footprint=FP-LQM21DN_00-MFG New Footprint=0302CS SERIES
+Change Component Comment : Designator=L? Old Comment=LQM21NNR22K10D New Comment=0302CS-N67XMB
+Change Managed Component Library Link : Designator=L? Old VaultGUID=B7D15EC3-160A-466F-A46C-7801FE6295A7 New VaultGUID= Old ItemGUID=BB04D09D-E602-41DA-9197-D8A8686CEE82 New ItemGUID= Old RevisionGUID=1D01660B-6D44-40BD-94C1-ABB3E4947DE0 New RevisionGUID=
+Change component parameters: Designator = "L?" ("L?"); Footprint = "FP-LQM21DN_00-MFG"; UniqueID = "\PFRKVFJL" ("\PFRKVFJL")
+Added Member To Class: ClassName=Sheet2 Member=Component C? 1.36nF
+Added Member To Class: ClassName=Sheet2 Member=Component C? 1.36nF
+Added Member To Class: ClassName=Sheet2 Member=Component C? 1.36nF
+Added Member To Class: ClassName=Sheet2 Member=Component C? 1.36nF
+Added Member To Class: ClassName=Sheet2 Member=Component C? 1.2nF/1.5nF
+Added Member To Class: ClassName=Sheet2 Member=Component L?
+Added Member To Class: ClassName=Sheet2 Member=Component L?
+Added Member To Class: ClassName=Sheet2 Member=Component L?
+Added Member To Class: ClassName=Sheet2 Member=Component L?
+Added Member To Class: ClassName=Sheet2 Member=Component L?
+Added Member To Class: ClassName=Sheet2 Member=Component L? 0302CS-N67XMB
