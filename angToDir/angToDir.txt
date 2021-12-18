@@ -14,9 +14,8 @@ double * findPlanes(double alphaA, double alphaB, double alphaC);
 
 
 void main() {
-  // put your main code here, to run repeatedly:
   double *testArray;
-  testArray = findPlanes(-1.047, 3.1415926/2, 0.698);
+  testArray = findPlanes(1.047, 1.222, 2.443);
   printf("%lf %lf %lf \n",testArray[0],testArray[1], testArray[2]);
   free(testArray);
 }
@@ -34,9 +33,9 @@ double determinantOfMatrix(double mat[3][3])
 
 
 double * findPlanes(double alphaA, double alphaB, double alphaC) {
-  double pointA[3] = {1000, 0, 0};
+  double pointA[3] = {-1000, 0, 0};
   double pointB[3] = {0, 0, 0};
-  double pointC[3] = { -1000, 0, 0};
+  double pointC[3] = {1000, 0, 0};
 
   double planeA[4] = {0};
   double planeB[4] = {0};
@@ -75,7 +74,6 @@ double * findPlanes(double alphaA, double alphaB, double alphaC) {
     { planeC[0], planeC[1], planeC[2], planeC[3]}
   };
 
-
   // Matrix d using planes as given in cramer's rule
   double d[3][3] = {
     { planes[0][0], planes[0][1], planes[0][2] },
@@ -111,20 +109,19 @@ double * findPlanes(double alphaA, double alphaB, double alphaC) {
   
   
   if (D != 0) {
-    // planes have a unique solution. Apply Cramer's Rule
      x = D1 / D;  // calculating x using cramer's rule
      y = D2 / D;  // calculating y using cramer's rule
      z = D3 / D;  // calculating z using cramer's rule
     printf("%lf %lf %lf \n",x,y,z);
   }
 
-  double theta = acos(z / sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2))) - 3.1415926/2;
+  double theta = atan(sqrt(pow(x, 2) + pow(y, 2))/z);
   double phi = 0;
   if (x > 0) {
-    phi = atan(y/x) - 3.1415926/2;
+    phi = atan(y/x);
   }
   else if(x<0) {
-    phi = atan(y/x) + 3.1415926 - 3.1415926/2;
+    phi = atan(y/x) + 3.1415926;
   }
   else{
       phi = 3.1415926/2;
