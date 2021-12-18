@@ -1,8 +1,8 @@
 er = 4.9; %relativ permativitet
-W = 0.00265; %bredde 
-h = 0.0015; %hoejde af print
+W = 0.00176; %bredde 
+h = 0.001; %hoejde af print
 t = 0.000034; %bane hoejde
-f = 2.4e9; %freq
+f = 300e6; %freq
 c = 3e8; %lys speed
 
 a = 88.75 / (sqrt(er + 1.47));
@@ -27,7 +27,7 @@ halv = lambda/2
 
 %for 50 ohm z0
 Yn = 0.25 + 0.55i; %
-kortL = ((0.0 + 0.1843 - 0.084) * lambda)% -  ((7*0.000127)+0.000905+0.005029)
+kortL = (( 0.1843 - 0.084) * lambda)% -  ((7*0.000127)+0.000905+0.005029)
 aabenS = 0.326 * lambda
 lukketS = (0.326-0.25)*lambda
 
