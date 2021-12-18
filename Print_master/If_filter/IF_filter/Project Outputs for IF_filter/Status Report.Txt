@@ -1,0 +1,15 @@
+Output: Gerber X2 Files
+Type  : GerberX2
+From  : Project [IF_filter.PrjPcb]
+   Generated File[IF_pcb_Copper_Signal_Top.gbr]
+   Generated File[IF_pcb_Copper_Signal_Bot.gbr]
+   Generated File[IF_pcb_Profile.gbr]
+   Generated File[IF_pcb_PTH_Drill.gbr]
+   Generated File[IF_pcb.EXTREP]
+   Generated File[IF_pcb.REP]
+
+
+Files Generated   : 6
+Documents Printed : 0
+
+Finished Output Generation At 12:01:10 On 18-12-2021
