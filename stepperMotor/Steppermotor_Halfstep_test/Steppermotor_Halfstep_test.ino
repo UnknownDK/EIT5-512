@@ -3,7 +3,6 @@ int motorPinB1 = 32; //32 C
 int motorPinA2 = 33; //33 D
 int motorPinB2 = 25; //25 A
 
-
 int motorPos = 1;
 long totalSteps = 0;
 
