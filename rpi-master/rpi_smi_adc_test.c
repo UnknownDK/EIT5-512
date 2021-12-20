@@ -19,6 +19,7 @@
 // Compile med:
 // gcc -Wall -fcommon -pedantic -o rpi_smi_adc_test rpi_smi_adc_test.c rpi_dma_utils.c
 // scp rpi_smi_adc_test.c pi@192.168.128.188:/home/pi/Desktop/rpi-master/
+//gcc -o rpi_smi_adc_test rpi_smi_adc_test.c rpi_dma_utils.c
 
 
 #include <stdio.h>
@@ -33,20 +34,20 @@
 // Set zero for single value, non-zero for block read
 #define USE_DMA         1
 // Use test pin in place of GPIO mode setting (to check timing)
-#define USE_TEST_PIN    0
+#define USE_TEST_PIN    0   
 
 // SMI cycle timings
 #define SMI_NUM_BITS    SMI_16_BITS
-#define SMI_TIMING      SMI_TIMING_1M // Set SMI timing
+#define SMI_TIMING      SMI_TIMING_10M // Set SMI timing
 
-//#if PHYS_REG_BASE==PI_4_REG_BASE        // Timings for RPi v4 (1.5 GHz)
+#if PHYS_REG_BASE==PI_4_REG_BASE        // Timings for RPi v4 (1.5 GHz)
 #define SMI_TIMING_1M   10, 38, 74, 38  // 1 MS/s
-//#define SMI_TIMING_10M   6,  6, 13,  6  // 10 MS/s
-//#define SMI_TIMING_20M   4,  5,  9,  5  // 19.74 MS/s
-//#define SMI_TIMING_25M   4,  3,  8,  4  // 25 MS/s
-//#define SMI_TIMING_31M   4,  3,  6,  3  // 31.25 MS/s
-//#else                                   // Timings for RPi v0-3 (1 GHz)
-//#define SMI_TIMING_1M   10, 25, 50, 25  // 1 MS/s
+#define SMI_TIMING_10M   6,  6, 13,  6  // 10 MS/s
+#define SMI_TIMING_20M   4,  5,  9,  5  // 19.74 MS/s
+#define SMI_TIMING_25M   4,  3,  8,  4  // 25 MS/s
+#define SMI_TIMING_31M   4,  3,  6,  3  // 31.25 MS/s
+#else                                   // Timings for RPi v0-3 (1 GHz)
+#define SMI_TIMING_1M   10, 25, 50, 25  // 1 MS/s
 #define SMI_TIMING_10M   4,  6, 13,  6  // 10 MS/s
 #define SMI_TIMING_20M   2,  6, 13,  6  // 20 MS/s
 #define SMI_TIMING_25M   2,  5, 10,  5  // 25 MS/s
@@ -54,7 +55,7 @@
 #define SMI_TIMING_31M   2,  4,  6,  4  // 31.25 MS/s
 #define SMI_TIMING_42M   2,  3,  6,  3  // 41.66 MS/s
 #define SMI_TIMING_50M   2,  3,  5,  2  // 50 MS/s
-//#endif
+#endif
 
 // Number of raw bytes per ADC sample
 #define SAMPLE_SIZE     2
@@ -69,8 +70,8 @@
 
 // GPIO pin numbers
 //#define ADC_D0_PIN      12
-//int ADC_D0_PIN[12]={8,9,10,11,14,15,17,18,22,23,24,25}; //Ja, den er god nok. Vi har PRÆCIS de 12 SD pins vi skal bruge og ikke ekstra.
-#define ADC_D0_PIN      12  
+int ADC_D0_PIN[12]={12,13,14,15,16,17,18,19,20,21,22,23}; //Ja, den er god nok. Vi har PRÆCIS de 12 SD pins vi skal bruge og ikke ekstra.
+//#define ADC_D0_PIN      12  
 #define ADC_NPINS       12
 #define SMI_SOE_PIN     6 //Tror faktisk det her er clocken
 #define SMI_SWE_PIN     7 // Vi bruger den her i stedet
@@ -137,13 +138,14 @@ int main(int argc, char *argv[])
     printf("3");
     map_devices();
     printf("4");
+    /*
     for (i=0; i<ADC_NPINS; i++)
         gpio_mode(ADC_D0_PIN+i, GPIO_IN);
     printf("5");
-    /*
+    */
     for (i=0; i<ADC_NPINS; i++)
         gpio_mode(ADC_D0_PIN[i], GPIO_IN);
-    */
+
     
 
     gpio_mode(SMI_SOE_PIN, GPIO_ALT1);
@@ -172,16 +174,19 @@ int main(int argc, char *argv[])
     smi_cs->clear = 1;
     printf("6");
     rxbuff = adc_dma_start(&vc_mem, NSAMPLES);
+    disp_dma(1);
     printf("7");
     smi_start(NSAMPLES, 1);
+    printf("8\n");
     while (dma_active(DMA_CHAN_A)) ;
+    printf("her");
     adc_dma_end(rxbuff, sample_data, NSAMPLES);
     disp_reg_fields(smi_cs_regstrs, "CS", *REG32(smi_regs, SMI_CS));
     smi_cs->enable = smi_dcs->enable = 0;
     for (i=0; i<NSAMPLES; i++)
         //printf("%1.3f\n", val_volts(sample_data[i]));
         printf("%u\n", sample_data[i]);
-    printf("8");
+    
 #endif
     terminate(0);
     return(0);
@@ -212,13 +217,13 @@ void terminate(int sig)
     printf("Closing\n");
     if (gpio_regs.virt)
     {
-        
-        for (i=0; i<ADC_NPINS; i++)
-            gpio_mode(ADC_D0_PIN+i, GPIO_IN);
         /*
         for (i=0; i<ADC_NPINS; i++)
-            gpio_mode(ADC_D0_PIN[i], GPIO_IN);
+            gpio_mode(ADC_D0_PIN+i, GPIO_IN);
         */
+        for (i=0; i<ADC_NPINS; i++)
+            gpio_mode(ADC_D0_PIN[i], GPIO_IN);
+
     }
     if (smi_regs.virt)
         *REG32(smi_regs, SMI_CS) = 0;
@@ -233,11 +238,16 @@ void terminate(int sig)
 // Start SMI, given number of samples, optionally pack bytes into words
 void smi_start(int nsamples, int packed)
 {
+    printf("Start8\n");
     smi_l->len = nsamples + PRE_SAMP;
+    printf("Start9\n");
     smi_cs->pxldat = (packed != 0);
+    printf("Start10\n");
     smi_cs->enable = 1;
     smi_cs->clear = 1;
+    
     smi_cs->start = 1;
+    printf("Start11\n");
 }
 
 // Start DMA for SMI ADC, return Rx data buffer
@@ -251,12 +261,12 @@ uint32_t *adc_dma_start(MEM_MAP *mp, int nsamp)
     for (i=0; i<3; i++)
         modes[i] = modes[i+3] = *REG32(gpio_regs, GPIO_MODE0 + i*4);
     // Get mode values with ADC pins set to SMI
-    for (i=ADC_D0_PIN; i<ADC_D0_PIN+ADC_NPINS; i++)
-        mode_word(&modes[i/10], i%10, GPIO_ALT1);
+    //for (i=ADC_D0_PIN; i<ADC_D0_PIN+ADC_NPINS; i++)
+    //    mode_word(&modes[i/10], i%10, GPIO_ALT1);
     // Her skal vi så lige gennemskue hvad der foregår før vi kan lave et quickfix
     // Hermed mit forsøg på et hack: 
-    //for (i=0; i<ADC_NPINS; i++)
-    //    mode_word(&modes[ADC_D0_PIN[i]/10], ADC_D0_PIN[i]%10, GPIO_ALT1); 
+    for (i=0; i<ADC_NPINS; i++)
+        mode_word(&modes[ADC_D0_PIN[i]/10], ADC_D0_PIN[i]%10, GPIO_ALT1); 
     // Copy mode values into 32-bit words
     *modep1 = modes[1];
     *modep2 = modes[2];
@@ -318,23 +328,32 @@ int adc_dma_end(void *buff, uint16_t *data, int nsamp)
 // Step value is in nanoseconds: even numbers, 2 to 30
 void init_smi(int width, int ns, int setup, int strobe, int hold)
 {
+    printf("init1");
     int divi = ns / 2;
-
+    printf("init2");
     smi_cs  = (SMI_CS_REG *) REG32(smi_regs, SMI_CS);
+    printf("init3");
     smi_l   = (SMI_L_REG *)  REG32(smi_regs, SMI_L);
+    printf("init4");
     smi_a   = (SMI_A_REG *)  REG32(smi_regs, SMI_A);
+    printf("init5");
     smi_d   = (SMI_D_REG *)  REG32(smi_regs, SMI_D);
+    printf("init6");
     smi_dmc = (SMI_DMC_REG *)REG32(smi_regs, SMI_DMC);
+    printf("init7");
     smi_dsr = (SMI_DSR_REG *)REG32(smi_regs, SMI_DSR0);
     smi_dsw = (SMI_DSW_REG *)REG32(smi_regs, SMI_DSW0);
     smi_dcs = (SMI_DCS_REG *)REG32(smi_regs, SMI_DCS);
     smi_dca = (SMI_DCA_REG *)REG32(smi_regs, SMI_DCA);
     smi_dcd = (SMI_DCD_REG *)REG32(smi_regs, SMI_DCD);
+    printf("init8");
     smi_cs->value = smi_l->value = smi_a->value = 0;
     smi_dsr->value = smi_dsw->value = smi_dcs->value = smi_dca->value = 0;
     if (*REG32(clk_regs, CLK_SMI_DIV) != divi << 12)
     {
+        printf("init9");
         *REG32(clk_regs, CLK_SMI_CTL) = CLK_PASSWD | (1 << 5);
+        printf("init10");
         usleep(10);
         while (*REG32(clk_regs, CLK_SMI_CTL) & (1 << 7)) ;
         usleep(10);
@@ -342,17 +361,22 @@ void init_smi(int width, int ns, int setup, int strobe, int hold)
         usleep(10);
         *REG32(clk_regs, CLK_SMI_CTL) = CLK_PASSWD | 6 | (1 << 4);
         usleep(10);
-        while ((*REG32(clk_regs, CLK_SMI_CTL) & (1 << 7)) == 0) ;
+        printf("%u\n",(*REG32(clk_regs, CLK_SMI_CTL) & (1 << 7)));
+        //while ((*REG32(clk_regs, CLK_SMI_CTL) & (1 << 7)) == 0) ;
+        printf("init12");
         usleep(100);
     }
+    
     if (smi_cs->seterr)
         smi_cs->seterr = 1;
+    printf("init11");
     smi_dsr->rsetup = smi_dsw->wsetup = setup;
     smi_dsr->rstrobe = smi_dsw->wstrobe = strobe;
     smi_dsr->rhold = smi_dsw->whold = hold;
     smi_dmc->panicr = smi_dmc->panicw = 8;
     smi_dmc->reqr = smi_dmc->reqw = REQUEST_THRESH;
     smi_dsr->rwidth = smi_dsw->wwidth = width;
+    printf("init12");
 }
 
 // Display SMI registers

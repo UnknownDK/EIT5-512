@@ -20,7 +20,7 @@ void setup() {
  
   R[0] = 0x181f0000;
   R[1] = 0x00000001;
-  R[2] = 0x0f2a0002;// for 2.5 mA: 0x072a0002;
+  R[2] = 0x0d050002; //10 divider //Old config: 0x0f2a0002;// for 2.5 mA: 0x072a0002;
   R[3] = 0x00000003;
   R[4] = 0x00000004; //for activation of negative bleed current 0x01800004;
 }
@@ -29,7 +29,7 @@ void setup() {
 void loop() {
   start = digitalRead(FOELER_PIN);
   while(start == 0){
-    for (int i = 4 ; i >= 0 ; i++){
+    for (int i = 4 ; i >= 0 ; i--){
       shiftOutADF(DATA_PIN, CLOCK_PIN, R[i]);
       digitalWrite(LE_PIN, HIGH); 
       delayMicroseconds(10);     //micros inserted for test

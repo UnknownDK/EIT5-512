@@ -1,0 +1,15 @@
+   ADC         RPI3B+
+14 LSB   -->   GPIO12   32
+13 D1    -->   GPIO13   33
+12 D2    -->   GPIO14   8
+11 D3    -->   GPIO15   10
+10 D4    -->   GPIO16   36
+ 9 D5    -->   GPIO17   11
+ 8 D6    -->   GPIO18   12
+ 7 D7    -->   GPIO19   35
+ 6 GND   -->   GND
+ 5 D8    -->   GPIO20   38
+ 4 D9    -->   GPIO21   40
+ 3 D10   -->   GPIO22   15
+ 2 MSB   -->   GPIO23   16
+ 1 CLK   -->   GPIO06   31
