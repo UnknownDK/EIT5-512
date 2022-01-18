@@ -25,7 +25,8 @@ double samplingPeriod = 12;   // 1/frekvens (enhed er millis)
 double angle = 0;         // y(t) (DER VI ER - LÆSES MED ENCODER)
 double controlSignal[2] = {0, 0}; // u(t)
 double errorSignal[3] = {0, 0, 0};   // e(t) til e(t-2)
-double * setPoint = 0;      // r(t) (DER VI VIL HEN)
+//double * setPoint = 0;      // r(t) (DER VI VIL HEN)
+double setPoint[3] = {0, 0, 0};
 
 unsigned long DCcurrentTime, someDelay; //previousTime,
 //double elapsedTime;
@@ -71,10 +72,13 @@ void setup() {
   pinMode(motorPinB2, OUTPUT);
 }
 
-
+int sekvens[6] = {0, 0, 0, 0, 0, 0};
 int nyVinkel = 1;
+double t = 0;
+unsigned long timerLast = 0;
 void loop() {
-  if (nyVinkel == 1) {
+  /*
+    if (nyVinkel == 1) {
     //double *setPoint;
     setPoint = findPlanes(1.0472, 1.22173, 2.44346);
     for (int i = 0; i < 3; i++) {
@@ -82,7 +86,101 @@ void loop() {
       //Serial.println(setPoint[i]);
     }
     //free(setPoint);
+    }
+  */
+
+  if (millis() > 1000 and sekvens[0] == 0) {
+    setPoint[0] = -25.78;
+    setPoint[1] = 0;
+    setPoint[2] = 0;
+    sekvens[0] = 1;
   }
+
+  if (millis() > 3000 and sekvens[1] == 0) {
+    t += 0.012;
+    setPoint[0] = 2.0 * sin(t) - 25.78;
+    setPoint[1] = 2.1 * cos(t);
+    setPoint[2] = 0;
+  }
+
+  if (millis() > 7000 and sekvens[2] == 0) {
+    sekvens[1] = 1;
+    setPoint[0] = 0;
+    setPoint[1] = -14.78;
+    setPoint[2] = 0;
+    sekvens[2] = 1;
+  }
+
+  if (millis() > 9000 and sekvens[3] == 0) {
+    setPoint[0] = -25.78;
+    setPoint[1] = -12.6;
+    setPoint[2] = 0;
+    sekvens[3] = 1;
+  }
+
+  if (millis() > 11000 and sekvens[4] == 0) {
+    setPoint[0] = 0;
+    setPoint[1] = 0;
+    setPoint[2] = 0;
+    sekvens[4] = 1;
+  }
+
+  if (millis() > 14500 and sekvens[5] == 0) {
+    t += 0.012;
+    setPoint[0] = 8.0 * sin(t);
+    setPoint[1] = 8.18 * cos(t);
+    setPoint[2] = 0;
+  }
+
+  if (millis() > 25000) {
+    sekvens[5] = 1;
+    setPoint[0] = 0;
+    setPoint[1] = 0;
+    setPoint[2] = 0;
+  }
+
+
+  /*
+    if (millis() > 7500 and sekvens[1] == 0) {
+      //setPoint = findPlanes(1.0472, 1.22173, 2.44346);
+      setPoint[0] = -25.78;
+      setPoint[1] = -12.6;
+      setPoint[2] = 0;
+      sekvens[1] = 1;
+    }
+
+    if (millis() > 12500 and sekvens[2] == 0) {
+      //setPoint = findPlanes(1.0472, 1.22173, 2.44346);
+      setPoint[0] = 0;
+      setPoint[1] = -14.78;
+      setPoint[2] = 0;
+      sekvens[2] = 1;
+    }
+
+    if (millis() > 17500 and sekvens[3] == 0) {
+      //setPoint = findPlanes(1.0472, 1.22173, 2.44346);
+      setPoint[0] = 0;
+      setPoint[1] = 0;
+      setPoint[2] = 0;
+      sekvens[3] = 1;
+    }
+
+    if (millis() > 22500 and (millis() > (timerLast + 10)) and sekvens[4] == 0) {
+      timerLast = millis();
+      setPoint[0] += 1;
+      setPoint[1] = 0;
+      setPoint[2] = 0;
+    }
+
+    if (millis() > 30000 and sekvens[5] == 0) {
+      sekvens[4] = 1;
+      setPoint[0] = 0;
+      setPoint[1] = 0;
+      setPoint[2] = 0;
+      sekvens[5] = 1;
+    }
+  */
+
 
   if (millis() > DCcurrentTime + samplingPeriod) {
     DCcurrentTime = millis();

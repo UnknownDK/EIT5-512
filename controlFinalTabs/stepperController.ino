@@ -127,11 +127,8 @@ void runSteps(int *Position, float angleWanted) {
   int dir = dirBasedOnAngle(angleWanted, angleNow);
   long stepsWanted = stepsCalculation(angleWanted);
 
-  if (angleWanted > 90 or angleWanted < 0) {
-    delay(10000000);
-  }
   //for (int i = 0; i < abs(stepsWanted); i++) {
-  if (abs(stepsWanted) >= 1) {
+  if (abs(stepsWanted) > 0.5) {
     singleStep(Position, dir);
   }
 }
